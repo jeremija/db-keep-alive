@@ -1,6 +1,6 @@
 {
   "name": "db-keep-alive",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Executes a keep-alive query on a database connection object every n seconds to keep it alive",
   "main": "index.js",
   "scripts": {

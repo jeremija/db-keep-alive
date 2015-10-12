@@ -4,21 +4,29 @@
  *
  * @param connection defines the database connection to use
  * @param interval   defines the ping interval in seconds
+ * @param sql        custom SQL query to execute, defaults to `SELECT 1`
  */
 
 function create_pinger(connection, interval, sql) {
   interval = (interval || 60) * 1000;
   sql = 'SELECT 1';
   var interval_id;
+  var log_enabled;
 
   function ping() {
-    console.log(new Date(), 'execute keep-alive query...');
+    if (log_enabled) {
+      console.log(new Date(), 'execute keep-alive query...');
+    }
     connection.query(sql)
       .on('error', function(err) {
-        console.error(new Date(), 'keep-alive error', err.code);
+        if (log_enabled) {
+          console.error(new Date(), 'keep-alive error', err.code);
+        }
       })
       .on('end', function() {
-        console.log(new Date(), 'keep-alive ok');
+        if (log_enabled) {
+          console.log(new Date(), 'keep-alive ok');
+        }
       });
   }
 
@@ -39,15 +47,24 @@ function create_pinger(connection, interval, sql) {
    * Sets connection and starts the ping interval
    */
   function set_connection(conn) {
-      stop();
-      connection = conn;
-      return this;
+    stop();
+    connection = conn;
+    return this;
+  }
+
+  function enable_log() {
+    log_enabled = true;
+  }
+  function disable_log() {
+    log_enabled = false;
   }
 
   return {
     set_connection: set_connection,
     start: start,
-    stop: stop
+    stop: stop,
+    enable_log: enable_log,
+    disable_log: disable_log
   };
 }
 
