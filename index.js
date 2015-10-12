@@ -54,9 +54,11 @@ function create_pinger(connection, interval, sql) {
 
   function enable_log() {
     log_enabled = true;
+    return this;
   }
   function disable_log() {
     log_enabled = false;
+    return this;
   }
 
   return {
