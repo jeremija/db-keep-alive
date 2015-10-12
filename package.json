@@ -1,0 +1,25 @@
+{
+  "name": "db-keep-alive",
+  "version": "1.0.0",
+  "description": "Executes a keep-alive query on a database connection object every n seconds to keep it alive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremija/db-keep-alive.git"
+  },
+  "keywords": [
+    "db",
+    "keep",
+    "alive",
+    "mysql"
+  ],
+  "author": "Jerko Steiner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeremija/db-keep-alive/issues"
+  },
+  "homepage": "https://github.com/jeremija/db-keep-alive#readme"
+}
